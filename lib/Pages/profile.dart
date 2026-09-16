@@ -6,35 +6,66 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Profile'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.3),
+        centerTitle: false,
+        title: const Text(
+          'Konnect.',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w900,
+            fontStyle: FontStyle.italic,
+            fontSize: 28,
+            letterSpacing: -1.0,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications_none, color: Colors.black),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
       ),
-      // Menggunakan ListView agar bisa di-scroll
+      
       body: ListView(
         children: [
           const SizedBox(height: 16),
           
-          // 1. Bagian Header
-          // Menggunakan ListTile karena ini adalah cara paling basic dan mudah
-          // di Flutter untuk membuat baris yang ada ikon di kiri, judul di tengah, dan tombol di kanan
-          ListTile(
-            leading: const CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.blue,
-              child: Text('AS', style: TextStyle(color: Colors.white)),
-            ),
-            title: const Text('Arya Santoso', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            subtitle: const Text('@arya.santoso • 2022130042'),
-            trailing: ElevatedButton(
-              onPressed: () {},
-              child: const Text('Edit Profile'),
-            ),
+          // 1. Bagian Header (Gaya WhatsApp)
+          Column(
+            children: [
+              const CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.blue,
+                child: Text('AS', style: TextStyle(color: Colors.white, fontSize: 36)),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Arya Santoso', 
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                '@arya.santoso • 2022130042', 
+                style: TextStyle(color: Colors.grey, fontSize: 14)
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Edit Profile'),
+              ),
+            ],
           ),
           
           // 2. Bagian Bio
-          // Menggunakan Padding biasa agar tulisan tidak menempel ke pinggir layar
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
@@ -45,7 +76,6 @@ class ProfilePage extends StatelessWidget {
                   style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)
                 ),
                 SizedBox(height: 8),
-                // Konten bahasa Indonesia dan tanpa emoji
                 Text(
                   'Mahasiswa aktif. Suka ngoding sambil minum kopi. Sangat tertarik dengan pembuatan website dan pengolahan data. Saat ini sedang mendalami cara kerja database PostgreSQL.'
                 ),
@@ -56,28 +86,12 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 16),
 
           // 3. Bagian Statistik
-          // Cukup menggunakan Row dan Column dasar secara langsung (inline)
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                children: [
-                  Text('23', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  Text('Posts', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('1.4k', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  Text('Karma', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('5', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  Text('Communities', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
+              _buildStatColumn('23', 'Posts'),
+              _buildStatColumn('1.4k', 'Karma'),
+              _buildStatColumn('5', 'Communities'),
             ],
           ),
 
@@ -90,30 +104,24 @@ class ProfilePage extends StatelessWidget {
           ),
           const Divider(),
 
-          // 5. Daftar Postingan (Konten Bahasa Indonesia)
-          // Menggunakan Card dan ListTile adalah trik paling basic untuk membuat daftar yang bagus tanpa kode rumit
-          const Card(
-            margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: ListTile(
-              title: Text('Tips bertahan hidup di ujian akhir Basis Data', style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('r/SistemInformasi • 2 jam yang lalu\n247 Suka • 38 Komentar'),
-            ),
+          // 5. Daftar Postingan
+          _buildPostCard(
+            'Tips bertahan hidup di ujian akhir Basis Data',
+            'r/SistemInformasi • 2 jam yang lalu',
+            '247',
+            '38',
           ),
-          
-          const Card(
-            margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: ListTile(
-              title: Text('Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?', style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('r/SistemInformasi • 2 hari yang lalu\n94 Suka • 47 Komentar'),
-            ),
+          _buildPostCard(
+            'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
+            'r/SistemInformasi • 2 hari yang lalu',
+            '94',
+            '47',
           ),
-          
-          const Card(
-            margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: ListTile(
-              title: Text('Tempat belajar paling nyaman di sekitar kampus', style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('r/KehidupanKampus • 1 minggu yang lalu\n1.2k Suka • 124 Komentar'),
-            ),
+          _buildPostCard(
+            'Tempat belajar paling nyaman di sekitar kampus',
+            'r/KehidupanKampus • 1 minggu yang lalu',
+            '1.2k',
+            '124',
           ),
         ],
       ),
@@ -122,12 +130,56 @@ class ProfilePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 3,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Alerts'),
+          BottomNavigationBarItem(icon: Icon(Icons.people_outline), label: 'Communities'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
+      ),
+    );
+  }
+
+  // ===========================================================================
+  // FUNGSI-FUNGSI HELPER (WIDGET REUSABLE) UNTUK EFISIENSI KODE
+  // ===========================================================================
+
+  // Fungsi untuk membuat kolom statistik (Posts, Karma, Communities)
+  Widget _buildStatColumn(String count, String label) {
+    return Column(
+      children: [
+        Text(count, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+        Text(label, style: const TextStyle(color: Colors.grey)),
+      ],
+    );
+  }
+
+  // Fungsi untuk membuat kartu postingan (Sama seperti di searchresult.dart)
+  Widget _buildPostCard(String title, String subtitle, String upvotes, String comments) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: ListTile(
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(subtitle),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Icon(Icons.arrow_upward, size: 16, color: Colors.grey),
+                const SizedBox(width: 4),
+                Text(upvotes),
+                const SizedBox(width: 16),
+                const Icon(Icons.chat_bubble_outline, size: 16, color: Colors.grey),
+                const SizedBox(width: 4),
+                Text(comments),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
