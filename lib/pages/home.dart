@@ -5,6 +5,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: const Text("halaman home")));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Konnect."),
+        elevation: 12,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+
+      body: SingleChildScrollView(child: Column(children: [])),
+    );
   }
 }
