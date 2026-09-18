@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Loginarum.dart';
+
+import 'login.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -11,10 +12,7 @@ class RegisterPage extends StatelessWidget {
         children: [
           // BACKGROUND
           Positioned.fill(
-            child: Image.asset(
-              'Foto/background1.jpg',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('Foto/background1.jpg', fit: BoxFit.cover),
           ),
 
           // CARD REGISTER
@@ -22,12 +20,7 @@ class RegisterPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Container(
                 width: 430,
-                padding: const EdgeInsets.fromLTRB(
-                  50,
-                  45,
-                  50,
-                  40,
-                ),
+                padding: const EdgeInsets.fromLTRB(50, 45, 50, 40),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
@@ -80,27 +73,20 @@ class RegisterPage extends StatelessWidget {
                             fontSize: 13,
                             color: Color(0xFF999999),
                           ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                             horizontal: 14,
                             vertical: 10,
                           ),
-                          enabledBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1,
                             ),
                           ),
-                          focusedBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1.5,
                             ),
@@ -138,27 +124,20 @@ class RegisterPage extends StatelessWidget {
                             size: 19,
                             color: Color(0xFF777777),
                           ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                             horizontal: 14,
                             vertical: 10,
                           ),
-                          enabledBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1,
                             ),
                           ),
-                          focusedBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1.5,
                             ),
@@ -196,27 +175,20 @@ class RegisterPage extends StatelessWidget {
                             size: 19,
                             color: Color(0xFF777777),
                           ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                             horizontal: 14,
                             vertical: 10,
                           ),
-                          enabledBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1,
                             ),
                           ),
-                          focusedBorder:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(9),
-                            borderSide:
-                                const BorderSide(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(9),
+                            borderSide: const BorderSide(
                               color: Color(0xFF4285F4),
                               width: 1.5,
                             ),
@@ -230,10 +202,7 @@ class RegisterPage extends StatelessWidget {
                     // SUDAH MEMILIKI AKUN
                     const Text(
                       'Sudah memiliki akun ?',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF333333),
-                      ),
+                      style: TextStyle(fontSize: 11, color: Color(0xFF333333)),
                     ),
 
                     const SizedBox(height: 3),
@@ -244,16 +213,14 @@ class RegisterPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginPage(),
+                            builder: (context) => const LoginPage(),
                           ),
                         );
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         minimumSize: Size.zero,
-                        tapTargetSize:
-                            MaterialTapTargetSize.shrinkWrap,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: const Text(
                         'Masuk',
@@ -277,22 +244,17 @@ class RegisterPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const LoginPage(),
+                                builder: (context) => const LoginPage(),
                               ),
                             );
                           },
-                          style:
-                              ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color(0xFF4285F4),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF4285F4),
                             foregroundColor: Colors.white,
                             elevation: 5,
                             shadowColor: Colors.black38,
-                            shape:
-                                RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(9),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(9),
                             ),
                           ),
                           child: const Text(
