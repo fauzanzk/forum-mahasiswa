@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
-
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
-  bool isBananaCounterOn = false;
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +16,8 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         title: const Text(
           'Settings',
-          style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -36,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {},
           ),
           
-          _buildSectionHeader('KONNECT PREMIUM'), // Disesuaikan dengan nama app
+          _buildSectionHeader('KONNECT PREMIUM'),
           _buildSettingsItem(
             icon: Icons.security,
             title: 'Get Premium',
@@ -61,13 +55,11 @@ class _SettingsPageState extends State<SettingsPage> {
             leading: const Icon(Icons.dark_mode_outlined, color: Colors.black),
             title: const Text('Banana Counter', style: TextStyle(fontSize: 16)),
             trailing: Switch(
-              value: isBananaCounterOn,
+              value: false, // Diset statis false karena StatelessWidget
               onChanged: (value) {
-                setState(() {
-                  isBananaCounterOn = value;
-                });
+                // Biarkan kosong untuk sementara karena ini stateless
               },
-              activeThumbColor: Colors.blue,
+              activeColor: Colors.blue,
             ),
           ),
 
@@ -98,12 +90,13 @@ class _SettingsPageState extends State<SettingsPage> {
             title: 'Media and animations',
             onTap: () {},
           ),
-          const SizedBox(height: 30), // Bottom padding
+          const SizedBox(height: 30), // Padding bawah
         ],
       ),
     );
   }
 
+  // Widget pembantu agar kode lebih rapi di dalam StatelessWidget
   Widget _buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 8),
@@ -119,24 +112,35 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildSettingsItem({required IconData icon, required String title, String? subtitle, required VoidCallback onTap}) {
+  Widget _buildSettingsItem(
+      {required IconData icon,
+      required String title,
+      String? subtitle,
+      required VoidCallback onTap}) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87),
       title: Text(title, style: const TextStyle(fontSize: 16)),
-      subtitle: subtitle != null ? Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)) : null,
+      subtitle: subtitle != null
+          ? Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey))
+          : null,
       trailing: const Icon(Icons.chevron_right, color: Colors.grey),
       onTap: onTap,
     );
   }
 
-  Widget _buildSettingsItemWithTrailingText({required IconData icon, required String title, required String trailingText, required VoidCallback onTap}) {
+  Widget _buildSettingsItemWithTrailingText(
+      {required IconData icon,
+      required String title,
+      required String trailingText,
+      required VoidCallback onTap}) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(trailingText, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+          Text(trailingText,
+              style: const TextStyle(color: Colors.grey, fontSize: 14)),
           const SizedBox(width: 4),
           const Icon(Icons.chevron_right, color: Colors.grey),
         ],
