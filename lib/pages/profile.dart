@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//* Widget
+import '../widgets/navigation_bar.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -34,28 +37,31 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      
+
       body: ListView(
         children: [
           const SizedBox(height: 16),
-          
+
           // 1. Bagian Header (Gaya WhatsApp)
           Column(
             children: [
               const CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.blue,
-                child: Text('AS', style: TextStyle(color: Colors.white, fontSize: 36)),
+                child: Text(
+                  'AS',
+                  style: TextStyle(color: Colors.white, fontSize: 36),
+                ),
               ),
               const SizedBox(height: 16),
               const Text(
-                'Arya Santoso', 
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                'Arya Santoso',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               const SizedBox(height: 4),
               const Text(
-                '@arya.santoso • 2022130042', 
-                style: TextStyle(color: Colors.grey, fontSize: 14)
+                '@arya.santoso • 2022130042',
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
@@ -64,7 +70,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ],
           ),
-          
+
           // 2. Bagian Bio
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -72,12 +78,15 @@ class ProfilePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Information Systems — Class of 2026', 
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)
+                  'Information Systems — Class of 2026',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Mahasiswa aktif. Suka ngoding sambil minum kopi. Sangat tertarik dengan pembuatan website dan pengolahan data. Saat ini sedang mendalami cara kerja database PostgreSQL.'
+                  'Mahasiswa aktif. Suka ngoding sambil minum kopi. Sangat tertarik dengan pembuatan website dan pengolahan data. Saat ini sedang mendalami cara kerja database PostgreSQL.',
                 ),
               ],
             ),
@@ -100,7 +109,10 @@ class ProfilePage extends StatelessWidget {
           // 4. Pembatas dan Judul Postingan
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text('Posts', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            child: Text(
+              'Posts',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
           const Divider(),
 
@@ -125,20 +137,9 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      
+
       // 6. Navigasi Bawah
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 3,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.people_outline), label: 'Communities'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
+      bottomNavigationBar: const NavBar(),
     );
   }
 
@@ -150,14 +151,22 @@ class ProfilePage extends StatelessWidget {
   Widget _buildStatColumn(String count, String label) {
     return Column(
       children: [
-        Text(count, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+        Text(
+          count,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
         Text(label, style: const TextStyle(color: Colors.grey)),
       ],
     );
   }
 
   // Fungsi untuk membuat kartu postingan (Sama seperti di searchresult.dart)
-  Widget _buildPostCard(String title, String subtitle, String upvotes, String comments) {
+  Widget _buildPostCard(
+    String title,
+    String subtitle,
+    String upvotes,
+    String comments,
+  ) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
@@ -173,7 +182,11 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(width: 4),
                 Text(upvotes),
                 const SizedBox(width: 16),
-                const Icon(Icons.chat_bubble_outline, size: 16, color: Colors.grey),
+                const Icon(
+                  Icons.chat_bubble_outline,
+                  size: 16,
+                  color: Colors.grey,
+                ),
                 const SizedBox(width: 4),
                 Text(comments),
               ],

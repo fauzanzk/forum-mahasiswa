@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//* widget
+import '../widgets/navigation_bar.dart';
+
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({super.key});
 
@@ -37,13 +40,16 @@ class SearchResultPage extends StatelessWidget {
           ),
         ),
       ),
-      
+
       body: ListView(
         children: [
           // 1. Kategori Pencarian
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 12.0,
+            ),
             child: Row(
               children: [
                 _buildCategoryPill('For you', isActive: true),
@@ -54,21 +60,37 @@ class SearchResultPage extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // 2. Communities
           const Padding(
             padding: EdgeInsets.all(16.0),
-            child: Text('Communities', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            child: Text(
+              'Communities',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-          _buildCommunityItem('PS', Colors.orange, 'r/PejuangSkripsi', '15k Members'),
-          _buildCommunityItem('TI', Colors.green, 'r/TeknikInformatika', '8k Members'),
+          _buildCommunityItem(
+            'PS',
+            Colors.orange,
+            'r/PejuangSkripsi',
+            '15k Members',
+          ),
+          _buildCommunityItem(
+            'TI',
+            Colors.green,
+            'r/TeknikInformatika',
+            '8k Members',
+          ),
 
           const Divider(height: 32),
 
           // 3. Posts
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text('Posts', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            child: Text(
+              'Posts',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
           _buildPostCard(
             'Ada saran judul skripsi untuk anak IT yang tidak jago ngoding?',
@@ -91,20 +113,9 @@ class SearchResultPage extends StatelessWidget {
           const SizedBox(height: 32),
         ],
       ),
-      
+
       // Navigasi Bawah
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.people_outline), label: 'Communities'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
+      bottomNavigationBar: const NavBar(),
     );
   }
 
@@ -131,7 +142,12 @@ class SearchResultPage extends StatelessWidget {
   }
 
   // Fungsi untuk membuat item komunitas
-  Widget _buildCommunityItem(String initial, Color color, String title, String subtitle) {
+  Widget _buildCommunityItem(
+    String initial,
+    Color color,
+    String title,
+    String subtitle,
+  ) {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: color,
@@ -139,12 +155,20 @@ class SearchResultPage extends StatelessWidget {
       ),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(subtitle),
-      trailing: const Text('Join', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+      trailing: const Text(
+        'Join',
+        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+      ),
     );
   }
 
   // Fungsi untuk membuat kartu postingan
-  Widget _buildPostCard(String title, String subtitle, String upvotes, String comments) {
+  Widget _buildPostCard(
+    String title,
+    String subtitle,
+    String upvotes,
+    String comments,
+  ) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
@@ -160,7 +184,11 @@ class SearchResultPage extends StatelessWidget {
                 const SizedBox(width: 4),
                 Text(upvotes),
                 const SizedBox(width: 16),
-                const Icon(Icons.chat_bubble_outline, size: 16, color: Colors.grey),
+                const Icon(
+                  Icons.chat_bubble_outline,
+                  size: 16,
+                  color: Colors.grey,
+                ),
                 const SizedBox(width: 4),
                 Text(comments),
               ],
