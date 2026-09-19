@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'help.dart'; // Menggunakan help.dart sesuai nama file Anda
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class SettingsPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          'Settings',
+          'Pengaturan',
           style: TextStyle(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -23,7 +24,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _buildSectionHeader('ACCOUNT SETTINGS'),
+          _buildSectionHeader('PENGATURAN AKUN'),
           _buildSettingsItem(
             icon: Icons.account_circle,
             title: 'u/NotNiyanaka',
@@ -33,70 +34,80 @@ class SettingsPage extends StatelessWidget {
           _buildSectionHeader('KONNECT PREMIUM'),
           _buildSettingsItem(
             icon: Icons.security,
-            title: 'Get Premium',
+            title: 'Dapatkan Premium',
             onTap: () {},
           ),
 
-          _buildSectionHeader('BUSINESS TOOLS'),
+          _buildSectionHeader('ALAT BISNIS'),
           _buildSettingsItem(
             icon: Icons.pie_chart_outline,
-            title: 'Try Konnect Pro',
-            subtitle: 'Trend monitoring',
+            title: 'Coba Konnect Pro',
+            subtitle: 'Pemantauan tren',
             onTap: () {},
           ),
           _buildSettingsItem(
             icon: Icons.campaign_outlined,
-            title: 'Advertise on Konnect',
+            title: 'Beriklan di Konnect',
             onTap: () {},
           ),
 
-          _buildSectionHeader('FEED OPTIONS'),
+          _buildSectionHeader('OPSI BERANDA'),
           ListTile(
             leading: const Icon(Icons.dark_mode_outlined, color: Colors.black),
-            title: const Text('Banana Counter', style: TextStyle(fontSize: 16)),
+            title: const Text('Penghitung Pisang', style: TextStyle(fontSize: 16)),
             trailing: Switch(
-              value: false, // Diset statis false karena StatelessWidget
-              onChanged: (value) {
-                // Biarkan kosong untuk sementara karena ini stateless
-              },
+              value: false,
+              onChanged: (value) {},
               activeColor: Colors.blue,
             ),
           ),
 
-          _buildSectionHeader('LANGUAGE SETTINGS'),
+          _buildSectionHeader('PENGATURAN BAHASA'),
           _buildSettingsItem(
             icon: Icons.translate,
-            title: 'Language and translations',
+            title: 'Bahasa dan terjemahan',
             onTap: () {},
           ),
 
-          _buildSectionHeader('VIEW OPTIONS'),
+          _buildSectionHeader('OPSI TAMPILAN'),
           _buildSettingsItemWithTrailingText(
             icon: Icons.view_agenda_outlined,
-            title: 'Default view',
-            trailingText: 'Card',
+            title: 'Tampilan default',
+            trailingText: 'Kartu',
             onTap: () {},
           ),
           _buildSettingsItemWithTrailingText(
             icon: Icons.image_outlined,
-            title: 'Thumbnails',
+            title: 'Thumbnail',
             trailingText: 'Default',
             onTap: () {},
           ),
 
-          _buildSectionHeader('ACCESSIBILITY'),
+          _buildSectionHeader('AKSESIBILITAS'),
           _buildSettingsItem(
             icon: Icons.play_circle_outline,
-            title: 'Media and animations',
+            title: 'Media dan animasi',
             onTap: () {},
           ),
-          const SizedBox(height: 30), // Padding bawah
+
+          _buildSectionHeader('DUKUNGAN'),
+          _buildSettingsItem(
+            icon: Icons.help_outline,
+            title: 'Bantuan',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BantuanPage()),
+              );
+            },
+          ),
+          const SizedBox(height: 30),
         ],
       ),
     );
   }
 
-  // Widget pembantu agar kode lebih rapi di dalam StatelessWidget
+  // (Method _buildSectionHeader, _buildSettingsItem, dll tetap sama seperti sebelumnya)
   Widget _buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 8),
