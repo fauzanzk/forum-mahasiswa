@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
           // backgroundddd
 
           Positioned.fill(
-            child: Image.asset('Foto/background1.jpg', fit: BoxFit.cover),
+            child: Image.asset('background1.jpg', fit: BoxFit.cover),
           ),
 
           // card loginnnn

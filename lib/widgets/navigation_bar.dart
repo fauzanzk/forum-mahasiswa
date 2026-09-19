@@ -1,4 +1,3 @@
-import 'package:coba_aja/themes/color_theme.dart';
 import "package:flutter/material.dart";
 
 import '../pages/home.dart';
@@ -7,32 +6,42 @@ import '../pages/profile.dart';
 import '../pages/search_result.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final int currentIndex;
+
+  const NavBar({super.key, this.currentIndex = 0});
 
   @override
   Widget build(BuildContext context) {
-    //* array
+    //* array (Menggunakan ikon versi Outlined / Rounded agar lebih modern dan konsisten)
     final List<Map<String, dynamic>> navButton = [
-      {'icon': Icons.home, 'page': HomePage()},
-      {'icon': Icons.search, 'page': SearchResultPage()},
-      {'icon': Icons.group, 'page': CommunityPage()},
-      {'icon': Icons.person, 'page': ProfilePage()},
+      {'icon': Icons.home_outlined, 'active_icon': Icons.home, 'page': const HomePage()},
+      {'icon': Icons.search_rounded, 'active_icon': Icons.search, 'page': const SearchResultPage()},
+      {'icon': Icons.people_outline_rounded, 'active_icon': Icons.people, 'page': const CommunityPage()},
+      {'icon': Icons.person_outline_rounded, 'active_icon': Icons.person, 'page': const ProfilePage()},
     ];
 
     //* Bottom App Bar
     return BottomAppBar(
-      color: AppColors.background,
+      color: Colors.blue, // Ubah warna navbar menjadi biru
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: navButton.map((item) {
-          return ElevatedButton(
+        children: navButton.asMap().entries.map((entry) {
+          int idx = entry.key;
+          var item = entry.value;
+          bool isActive = idx == currentIndex;
+
+          return IconButton(
+            iconSize: isActive ? 34 : 30, // Perbesar sedikit jika aktif
+            color: isActive ? Colors.white : Colors.white70, // Beri efek transparan jika tidak aktif
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => item['page']),
-              );
+              if (!isActive) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => item['page']),
+                );
+              }
             },
-            child: Icon(item["icon"]),
+            icon: Icon(isActive ? item["active_icon"] : item["icon"]), // Gunakan ikon filled jika aktif
           );
         }).toList(),
       ),

@@ -8,14 +8,40 @@ import '../widgets/navigation_bar.dart';
 import '../widgets/post_card.dart';
 
 // page
-import 'post.dart'; // ← TAMBAH IMPORT
+import 'post.dart';
+import 'notif.dart';
 
 final List<Map<String, String>> pengencobaaja = [
-  {'nama': 'Fauzan', 'judul': 'Cara belajar Flutter?'},
-  {'nama': 'Budi', 'judul': 'Error saat install'},
-  {'nama': 'Siti', 'judul': 'Rekomendasi state management'},
-  {'nama': 'Andi', 'judul': 'Tips optimasi performa'},
-  {'nama': 'Rina', 'judul': 'Cara bikin dark mode'},
+  {
+    'nama': 'SistemInformasi',
+    'judul': 'Tips bertahan hidup di ujian akhir Basis Data',
+    'upvotes': '247',
+    'comments': '38',
+  },
+  {
+    'nama': 'TeknikInformatika',
+    'judul': 'Ada saran judul skripsi untuk anak IT yang tidak jago ngoding?',
+    'upvotes': '128',
+    'comments': '45',
+  },
+  {
+    'nama': 'KehidupanKampus',
+    'judul': 'Tempat belajar paling nyaman di sekitar kampus',
+    'upvotes': '1.2k',
+    'comments': '124',
+  },
+  {
+    'nama': 'PejuangSkripsi',
+    'judul': 'Berapa lama idealnya mengerjakan skripsi dari Bab 1 sampai selesai?',
+    'upvotes': '342',
+    'comments': '89',
+  },
+  {
+    'nama': 'SistemInformasi',
+    'judul': 'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
+    'upvotes': '94',
+    'comments': '47',
+  },
 ];
 
 class HomePage extends StatelessWidget {
@@ -27,10 +53,31 @@ class HomePage extends StatelessWidget {
       backgroundColor: AppColors.background,
 
       appBar: AppBar(
-        title: const Text("Konnect."),
+        title: const Text(
+          "Konnect.",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
+            fontStyle: FontStyle.italic,
+            fontSize: 24, // Diperkecil dari 28
+            letterSpacing: -1.0,
+          ),
+        ),
         elevation: 12,
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.textPrimary,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            iconSize: 28,
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotifikasiPage()),
+              );
+            },
+          ),
+        ],
       ),
 
       body: ListView.builder(
@@ -40,6 +87,8 @@ class HomePage extends StatelessWidget {
           return PostCard(
             nama: post['nama']!,
             judul: post['judul']!,
+            upvotes: post['upvotes']!,
+            comments: post['comments']!,
 
             // ── TAMBAH onTap
             onTap: () {
@@ -55,7 +104,7 @@ class HomePage extends StatelessWidget {
         },
       ),
 
-      bottomNavigationBar: const NavBar(),
+      bottomNavigationBar: const NavBar(currentIndex: 0),
     );
   }
 }

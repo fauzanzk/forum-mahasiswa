@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-//*widget
 import '../widgets/navigation_bar.dart';
-
-const Color kBackgroundBlue = Color(0xFF1B5FD1);
-const Color kCardBlue = Color(0xFF2A6FE0);
-const Color kForegroundWhite = Colors.white;
-const Color kSecondaryWhite = Color(0xCCFFFFFF);
+import 'notif.dart';
 
 void main() {
   runApp(const CommunityPage());
@@ -19,10 +14,10 @@ class CommunityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Komunitas',
+      title: 'Communities',
       theme: ThemeData(
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: kBackgroundBlue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: const KomunitasPage(),
     );
@@ -35,149 +30,185 @@ class KomunitasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundBlue,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: kBackgroundBlue,
-        elevation: 0,
+        backgroundColor: Colors.blue,
+        surfaceTintColor: Colors.transparent,
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.3),
         centerTitle: false,
         title: const Text(
-          'Komunitas',
+          'Konnect.',
           style: TextStyle(
-            color: kForegroundWhite,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
+            fontStyle: FontStyle.italic,
+            fontSize: 24, // Diperkecil dari 28
+            letterSpacing: -1.0,
           ),
         ),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        children: const [
-          Row(
-            children: [
-              SizedBox(width: 10),
-              _TabPill(label: 'My Community', selected: true),
-            ],
-          ),
-          SizedBox(height: 20),
-
-          Row(
-            children: [
-              Expanded(
-                child: _UkmCard(
-                  name: 'UKM Catur',
-                  icon: Icons.grid_on,
-                  iconColor: Color(0xFFFBBF24),
-                ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: _UkmCard(
-                  name: 'UKM Islam',
-                  icon: Icons.mosque,
-                  iconColor: Color(0xFF4ADE80),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 24),
-
-          _SectionTitle('UKM Catur'),
-          _CommunityPostItem(
-            initial: 'D',
-            avatarColor: Color(0xFFFBBF24),
-            boldText: 'Dimas',
-            normalText: ' memposting: Selamat buat GothamChess udah menangin turnamen kemarin.',
-            timeText: '2 h',
-          ),
-          SizedBox(height: 10),
-          _CommunityPostItem(
-            initial: 'A',
-            avatarColor: Color(0xFFFBBF24),
-            boldText: 'Arum',
-            normalText: ' memposting: Ini hasil turnamen kemarin yaa, selamat buat pemenang.',
-            timeText: '3 h',
-          ),
-          SizedBox(height: 20),
-          _SectionTitle('UKM Islam'),
-          _CommunityPostItem(
-            initial: 'I',
-            avatarColor: Color(0xFF4ADE80),
-            boldText: 'Iggi',
-            normalText: ' memposting: Ada yang mau ngaji bareng di masjid ga?',
-            timeText: '1 j',
-          ),
-          SizedBox(height: 10),
-          _CommunityPostItem(
-            initial: 'S',
-            avatarColor: Color(0xFF4ADE80),
-            boldText: 'Septyan',
-            normalText: ' memposting: Minggu ini kita ada pengajian di hari kamis sekalian doa bersama ya guys, ditunggu kehadirannya.',
-            timeText: '3 h',
+        actions: [
+          IconButton(
+            iconSize: 28,
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotifikasiPage()),
+              );
+            },
           ),
         ],
       ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        children: [
+          // Pills Category
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                _buildCategoryPill('My Community', isActive: true),
+                const SizedBox(width: 8),
+                _buildCategoryPill('Discover', isActive: false),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
 
-      bottomNavigationBar: const NavBar(),
+          // UKM Cards
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: _buildUkmCard(
+                    name: 'UKM Catur',
+                    icon: Icons.grid_on,
+                    iconColor: const Color(0xFFFBBF24),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildUkmCard(
+                    name: 'UKM Islam',
+                    icon: Icons.mosque,
+                    iconColor: const Color(0xFF4ADE80),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 24),
+
+          // Feed
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'UKM Catur',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          _buildPostCard(
+            'Dimas',
+            const Color(0xFFFBBF24),
+            'Selamat buat GothamChess udah menangin turnamen kemarin.',
+            '2 h',
+            '120',
+            '15',
+          ),
+          _buildPostCard(
+            'Arum',
+            const Color(0xFFFBBF24),
+            'Ini hasil turnamen kemarin yaa, selamat buat pemenang.',
+            '3 h',
+            '85',
+            '5',
+          ),
+          const SizedBox(height: 20),
+
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'UKM Islam',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          _buildPostCard(
+            'Iggi',
+            const Color(0xFF4ADE80),
+            'Ada yang mau ngaji bareng di masjid ga?',
+            '1 j',
+            '45',
+            '12',
+          ),
+          _buildPostCard(
+            'Septyan',
+            const Color(0xFF4ADE80),
+            'Minggu ini kita ada pengajian di hari kamis sekalian doa bersama ya guys, ditunggu kehadirannya.',
+            '3 h',
+            '210',
+            '42',
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+      bottomNavigationBar: const NavBar(currentIndex: 2),
     );
   }
-}
 
-class _TabPill extends StatelessWidget {
-  final String label;
-  final bool selected;
-  const _TabPill({required this.label, required this.selected});
+  // ===========================================================================
+  // HELPER WIDGETS (Disamakan gayanya dengan search_result dan profile)
+  // ===========================================================================
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildCategoryPill(String title, {required bool isActive}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        color: selected ? kForegroundWhite : kCardBlue,
+        color: isActive ? Colors.blue : Colors.grey.shade200, // Aktif berwarna biru
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
-        label,
+        title,
         style: TextStyle(
-          color: selected ? kBackgroundBlue : kForegroundWhite,
+          color: isActive ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
-          fontSize: 13,
         ),
       ),
     );
   }
-}
 
-class _UkmCard extends StatelessWidget {
-  final String name;
-  final IconData icon;
-  final Color iconColor;
-
-  const _UkmCard({
-    required this.name,
-    required this.icon,
-    required this.iconColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildUkmCard({
+    required String name,
+    required IconData icon,
+    required Color iconColor,
+  }) {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: kCardBlue,
-        borderRadius: BorderRadius.circular(14),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(icon, color: iconColor, size: 22),
+              Icon(icon, color: iconColor, size: 24),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   name,
                   style: const TextStyle(
-                    color: kForegroundWhite,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
@@ -185,109 +216,93 @@ class _UkmCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 24),
           Row(
             children: const [
               Text(
                 'Gabung',
                 style: TextStyle(
-                  color: kForegroundWhite,
+                  color: Colors.blue,
                   fontWeight: FontWeight.w600,
                   fontSize: 13,
                 ),
               ),
               SizedBox(width: 4),
-              Icon(Icons.arrow_forward, color: kForegroundWhite, size: 16),
+              Icon(Icons.arrow_forward, color: Colors.blue, size: 16),
             ],
           ),
         ],
       ),
     );
   }
-}
 
-class _SectionTitle extends StatelessWidget {
-  final String title;
-  const _SectionTitle(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kForegroundWhite,
-          fontWeight: FontWeight.bold,
-          fontSize: 15,
+  Widget _buildPostCard(
+    String author,
+    Color avatarColor,
+    String content,
+    String time,
+    String upvotes,
+    String comments,
+  ) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: ListTile(
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 12,
+              backgroundColor: avatarColor,
+              child: Text(
+                author[0],
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              author,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '• $time yang lalu',
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class _CommunityPostItem extends StatelessWidget {
-  final String initial;
-  final Color avatarColor;
-  final String boldText;
-  final String normalText;
-  final String timeText;
-
-  const _CommunityPostItem({
-    required this.initial,
-    required this.avatarColor,
-    required this.boldText,
-    required this.normalText,
-    required this.timeText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: kCardBlue,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: 22,
-            backgroundColor: avatarColor,
-            child: Text(
-              initial,
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            Text(
+              content,
               style: const TextStyle(
-                color: kForegroundWhite,
-                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: RichText(
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              text: TextSpan(
-                style: const TextStyle(fontSize: 14, color: kForegroundWhite),
-                children: [
-                  TextSpan(
-                    text: boldText,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(text: normalText),
-                  TextSpan(
-                    text: '  $timeText',
-                    style: const TextStyle(
-                      color: kSecondaryWhite,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                const Icon(Icons.arrow_upward, size: 16, color: Colors.grey),
+                const SizedBox(width: 4),
+                Text(upvotes),
+                const SizedBox(width: 16),
+                const Icon(
+                  Icons.chat_bubble_outline,
+                  size: 16,
+                  color: Colors.grey,
+                ),
+                const SizedBox(width: 4),
+                Text(comments),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

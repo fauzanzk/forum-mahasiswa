@@ -115,7 +115,7 @@ class SearchResultPage extends StatelessWidget {
       ),
 
       // Navigasi Bawah
-      bottomNavigationBar: const NavBar(),
+      bottomNavigationBar: const NavBar(currentIndex: 1),
     );
   }
 
@@ -128,7 +128,7 @@ class SearchResultPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        color: isActive ? Colors.black : Colors.grey.shade200,
+        color: isActive ? Colors.blue : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(

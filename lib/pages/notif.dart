@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-const Color kBackgroundBlue = Color(0xFF1B5FD1);
-const Color kCardBlue = Color(0xFF2A6FE0);
-const Color kForegroundWhite = Colors.white;
-const Color kSecondaryWhite = Color(0xCCFFFFFF);
-
 void main() {
   runApp(const NotifApp());
 }
@@ -19,7 +14,7 @@ class NotifApp extends StatelessWidget {
       title: 'Notifikasi',
       theme: ThemeData(
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: kBackgroundBlue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: const NotifikasiPage(),
     );
@@ -32,23 +27,28 @@ class NotifikasiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundBlue,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: kBackgroundBlue,
-        elevation: 0,
+        backgroundColor: Colors.blue,
+        surfaceTintColor: Colors.transparent,
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.3),
         centerTitle: false,
-        leading: const Icon(Icons.arrow_back, color: kForegroundWhite),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text(
           'Notifikasi',
           style: TextStyle(
-            color: kForegroundWhite,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         children: const [
           _SectionTitle('Hari ini'),
           _NotificationItem(
@@ -69,6 +69,7 @@ class NotifikasiPage extends StatelessWidget {
             type: _NotifType.follow,
           ),
           SizedBox(height: 20),
+
           _SectionTitle('Kemarin'),
           _NotificationItem(
             initial: 'D',
@@ -79,6 +80,7 @@ class NotifikasiPage extends StatelessWidget {
             type: _NotifType.comment,
           ),
           SizedBox(height: 20),
+
           _SectionTitle('Minggu Ini'),
           _NotificationItem(
             initial: 'I',
@@ -89,6 +91,7 @@ class NotifikasiPage extends StatelessWidget {
             type: _NotifType.like,
           ),
           SizedBox(height: 20),
+
           _SectionTitle('Bulan Ini'),
           _NotificationItem(
             initial: 'U',
@@ -120,11 +123,11 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 12, top: 4),
       child: Text(
         title,
         style: const TextStyle(
-          color: kForegroundWhite,
+          color: Colors.black87,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
@@ -134,7 +137,6 @@ class _SectionTitle extends StatelessWidget {
 }
 
 enum _NotifType { like, follow, comment, post }
-
 
 class _NotificationItem extends StatelessWidget {
   final String initial;
@@ -158,8 +160,15 @@ class _NotificationItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: kCardBlue,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,7 +180,7 @@ class _NotificationItem extends StatelessWidget {
             child: Text(
               initial,
               style: const TextStyle(
-                color: kForegroundWhite,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -184,7 +193,7 @@ class _NotificationItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
-                style: const TextStyle(fontSize: 14, color: kForegroundWhite),
+                style: const TextStyle(fontSize: 14, color: Colors.black87),
                 children: [
                   TextSpan(
                     text: boldText,
@@ -194,7 +203,7 @@ class _NotificationItem extends StatelessWidget {
                   TextSpan(
                     text: '  $timeText',
                     style: const TextStyle(
-                      color: kSecondaryWhite,
+                      color: Colors.grey,
                       fontSize: 12,
                     ),
                   ),
@@ -215,13 +224,13 @@ class _NotificationItem extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         decoration: BoxDecoration(
-          color: kForegroundWhite,
-          borderRadius: BorderRadius.circular(8),
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(20),
         ),
         child: const Text(
           'Ikuti',
           style: TextStyle(
-            color: kBackgroundBlue,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 12,
           ),
@@ -233,8 +242,8 @@ class _NotificationItem extends StatelessWidget {
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: kForegroundWhite.withOpacity(0.25),
-        borderRadius: BorderRadius.circular(8),
+        color: Colors.blue.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(
         type == _NotifType.like
@@ -242,7 +251,7 @@ class _NotificationItem extends StatelessWidget {
             : type == _NotifType.comment
                 ? Icons.chat_bubble
                 : Icons.image,
-        color: kForegroundWhite,
+        color: Colors.blue,
         size: 20,
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/navigation_bar.dart';
 import 'settings.dart';
+import 'notif.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -11,7 +12,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue, // Ubah ke biru
         surfaceTintColor: Colors.transparent,
         elevation: 3,
         shadowColor: Colors.black.withOpacity(0.3),
@@ -19,20 +20,27 @@ class ProfilePage extends StatelessWidget {
         title: const Text(
           'Konnect.',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white, // Ubah ke putih
             fontWeight: FontWeight.w900,
             fontStyle: FontStyle.italic,
-            fontSize: 28,
+            fontSize: 24, // Diperkecil dari 28
             letterSpacing: -1.0,
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black),
-            onPressed: () {},
+            iconSize: 28,
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white), // Ikon notifikasi yang lebih modern (outlined)
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotifikasiPage()),
+              );
+            },
           ),
           IconButton(
-            icon: const Icon(Icons.settings, color: Colors.black),
+            iconSize: 28,
+            icon: const Icon(Icons.settings_outlined, color: Colors.white), // Ikon settings yang lebih modern (outlined)
             onPressed: () {
               Navigator.push(
                 context,
@@ -69,6 +77,10 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.blue,
+                ),
                 onPressed: () {},
                 child: const Text('Edit Profile'),
               ),
@@ -138,7 +150,7 @@ class ProfilePage extends StatelessWidget {
         ],
       ),
 
-      bottomNavigationBar: const NavBar(),
+      bottomNavigationBar: const NavBar(currentIndex: 3),
     );
   }
 

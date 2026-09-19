@@ -52,14 +52,10 @@ class SettingsPage extends StatelessWidget {
           ),
 
           _buildSectionHeader('OPSI BERANDA'),
-          ListTile(
-            leading: const Icon(Icons.dark_mode_outlined, color: Colors.black),
-            title: const Text('Mode Gelap', style: TextStyle(fontSize: 16)),
-            trailing: Switch(
-              value: false,
-              onChanged: (value) {},
-              activeColor: Colors.blue,
-            ),
+          _buildSettingsItem(
+            icon: Icons.dark_mode_outlined,
+            title: 'Mode Gelap',
+            onTap: () {},
           ),
 
           _buildSectionHeader('PENGATURAN BAHASA'),

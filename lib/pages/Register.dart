@@ -12,7 +12,7 @@ class RegisterPage extends StatelessWidget {
         children: [
           // BACKGROUND
           Positioned.fill(
-            child: Image.asset('Foto/background1.jpg', fit: BoxFit.cover),
+            child: Image.asset('background1.jpg', fit: BoxFit.cover),
           ),
 
           // CARD REGISTER
@@ -210,12 +210,7 @@ class RegisterPage extends StatelessWidget {
                     // TULISAN MASUK - BISA DIKLIK
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -241,12 +236,7 @@ class RegisterPage extends StatelessWidget {
                         height: 45,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginPage(),
-                              ),
-                            );
+                            Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4285F4),
