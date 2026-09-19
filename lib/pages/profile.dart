@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-//* Widget
 import '../widgets/navigation_bar.dart';
+import 'settings.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -33,7 +33,12 @@ class ProfilePage extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.settings, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
+              );
+            },
           ),
         ],
       ),
@@ -42,7 +47,6 @@ class ProfilePage extends StatelessWidget {
         children: [
           const SizedBox(height: 16),
 
-          // 1. Bagian Header (Gaya WhatsApp)
           Column(
             children: [
               const CircleAvatar(
@@ -71,7 +75,6 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
 
-          // 2. Bagian Bio
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
@@ -94,7 +97,6 @@ class ProfilePage extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // 3. Bagian Statistik
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -106,7 +108,6 @@ class ProfilePage extends StatelessWidget {
 
           const SizedBox(height: 24),
 
-          // 4. Pembatas dan Judul Postingan
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
@@ -116,7 +117,6 @@ class ProfilePage extends StatelessWidget {
           ),
           const Divider(),
 
-          // 5. Daftar Postingan
           _buildPostCard(
             'Tips bertahan hidup di ujian akhir Basis Data',
             'r/SistemInformasi • 2 jam yang lalu',
@@ -138,16 +138,10 @@ class ProfilePage extends StatelessWidget {
         ],
       ),
 
-      // 6. Navigasi Bawah
       bottomNavigationBar: const NavBar(),
     );
   }
 
-  // ===========================================================================
-  // FUNGSI-FUNGSI HELPER (WIDGET REUSABLE) UNTUK EFISIENSI KODE
-  // ===========================================================================
-
-  // Fungsi untuk membuat kolom statistik (Posts, Karma, Communities)
   Widget _buildStatColumn(String count, String label) {
     return Column(
       children: [
@@ -160,7 +154,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk membuat kartu postingan (Sama seperti di searchresult.dart)
   Widget _buildPostCard(
     String title,
     String subtitle,
