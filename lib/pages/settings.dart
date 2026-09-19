@@ -54,7 +54,7 @@ class SettingsPage extends StatelessWidget {
           _buildSectionHeader('OPSI BERANDA'),
           ListTile(
             leading: const Icon(Icons.dark_mode_outlined, color: Colors.black),
-            title: const Text('Penghitung Pisang', style: TextStyle(fontSize: 16)),
+            title: const Text('Mode Gelap', style: TextStyle(fontSize: 16)),
             trailing: Switch(
               value: false,
               onChanged: (value) {},
