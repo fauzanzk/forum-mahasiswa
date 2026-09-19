@@ -10,30 +10,27 @@ class BantuanPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Row(
           children: const [
-            Icon(Icons.support_agent, color: Colors.orange), // Logo placeholder
+            Icon(Icons.support_agent, color: Colors.orange),
             SizedBox(width: 8),
             Text(
-              'Konnect',
+              'Bantuan Konnect',
               style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Section (Yellow Background)
             Container(
               width: double.infinity,
-              color: const Color(0xFFF3C645), // Warna kuning sesuai referensi
+              color: const Color(0xFFF3C645),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +50,6 @@ class BantuanPage extends StatelessWidget {
                     style: TextStyle(fontSize: 14, color: Colors.black87),
                   ),
                   const SizedBox(height: 24),
-                  
-                  // Search Bar
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -87,8 +82,6 @@ class BantuanPage extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Card Section
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(
@@ -99,7 +92,6 @@ class BantuanPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Icon Badge (Placeholder for the custom image)
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
