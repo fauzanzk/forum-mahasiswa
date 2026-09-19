@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-//* widget
+// theme
+import '../themes/color_theme.dart';
+
+// widget
 import '../widgets/navigation_bar.dart';
-import "../widgets/post_card.dart";
+import '../widgets/post_card.dart';
+
+// page
+import 'post.dart'; // ← TAMBAH IMPORT
 
 final List<Map<String, String>> pengencobaaja = [
   {'nama': 'Fauzan', 'judul': 'Cara belajar Flutter?'},
@@ -18,11 +24,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
+
       appBar: AppBar(
         title: const Text("Konnect."),
         elevation: 12,
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.textPrimary,
       ),
 
       body: ListView.builder(
@@ -30,9 +38,19 @@ class HomePage extends StatelessWidget {
         itemBuilder: (context, index) {
           final post = pengencobaaja[index];
           return PostCard(
-            // ← return widget
             nama: post['nama']!,
             judul: post['judul']!,
+
+            // ── TAMBAH onTap
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DiskusiPage(nama: post['nama']!, judul: post['judul']!),
+                ),
+              );
+            },
           );
         },
       ),

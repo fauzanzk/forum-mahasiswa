@@ -1,3 +1,4 @@
+import 'package:coba_aja/themes/color_theme.dart';
 import "package:flutter/material.dart";
 
 import '../pages/home.dart';
@@ -20,6 +21,7 @@ class NavBar extends StatelessWidget {
 
     //* Bottom App Bar
     return BottomAppBar(
+      color: AppColors.background,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: navButton.map((item) {
