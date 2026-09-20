@@ -11,14 +11,15 @@ class DiskusiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Diskusi'),
-        backgroundColor: AppColors.primary,
+        title: const Text('Diskusi', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.3),
+        surfaceTintColor: Colors.transparent,
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -29,7 +30,7 @@ class DiskusiPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 24,
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: Colors.blue,
                   child: Text(
                     nama[0],
                     style: const TextStyle(
@@ -69,11 +70,53 @@ class DiskusiPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // ── Isi (contoh)
+            // ── Isi
             const Text(
               'Ini adalah isi diskusi. Di sini nanti kamu bisa menampilkan '
               'komentar-komentar dari user lain.',
               style: TextStyle(fontSize: 15, height: 1.5),
+            ),
+
+            const SizedBox(height: 24),
+
+            // ── Icon Actions (Upvote, Comment, Report)
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.arrow_upward_rounded, size: 20, color: Colors.black87),
+                      SizedBox(width: 4),
+                      Text('Upvote', style: TextStyle(fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.chat_bubble_outline_rounded, size: 20, color: Colors.black87),
+                      SizedBox(width: 4),
+                      Text('Reply', style: TextStyle(fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: const Icon(Icons.flag_outlined, color: Colors.grey),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),

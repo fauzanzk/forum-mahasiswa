@@ -43,7 +43,7 @@ class SearchResultPage extends StatelessWidget {
 
       body: ListView(
         children: [
-          // 1. Kategori Pencarian
+          // 1. Kategori
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(
@@ -61,7 +61,7 @@ class SearchResultPage extends StatelessWidget {
             ),
           ),
 
-          // 2. Communities
+          // 2. Komunitas/UKM
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
@@ -119,11 +119,7 @@ class SearchResultPage extends StatelessWidget {
     );
   }
 
-  // ===========================================================================
-  // FUNGSI-FUNGSI HELPER (WIDGET REUSABLE) UNTUK EFISIENSI KODE
-  // ===========================================================================
-
-  // Fungsi untuk membuat tombol kategori (Pill/Chip)
+  // Tombol tombol kategori
   Widget _buildCategoryPill(String title, {required bool isActive}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -141,7 +137,7 @@ class SearchResultPage extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk membuat item komunitas
+  // Item item komunitas
   Widget _buildCommunityItem(
     String initial,
     Color color,
@@ -162,7 +158,7 @@ class SearchResultPage extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk membuat kartu postingan
+  // Fungsi kartu postingan
   Widget _buildPostCard(
     String title,
     String subtitle,

@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue, // Ubah ke biru
+        backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
         shadowColor: Colors.black.withOpacity(0.3),
@@ -20,17 +20,17 @@ class ProfilePage extends StatelessWidget {
         title: const Text(
           'Konnect.',
           style: TextStyle(
-            color: Colors.white, // Ubah ke putih
+            color: Colors.white,
             fontWeight: FontWeight.w900,
             fontStyle: FontStyle.italic,
-            fontSize: 24, // Diperkecil dari 28
+            fontSize: 24,
             letterSpacing: -1.0,
           ),
         ),
         actions: [
           IconButton(
             iconSize: 28,
-            icon: const Icon(Icons.notifications_outlined, color: Colors.white), // Ikon notifikasi yang lebih modern (outlined)
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
@@ -40,7 +40,7 @@ class ProfilePage extends StatelessWidget {
           ),
           IconButton(
             iconSize: 28,
-            icon: const Icon(Icons.settings_outlined, color: Colors.white), // Ikon settings yang lebih modern (outlined)
+            icon: const Icon(Icons.settings_outlined, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
