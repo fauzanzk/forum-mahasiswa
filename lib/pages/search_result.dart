@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //* widget
 import '../widgets/navigation_bar.dart';
+import '../widgets/post_card.dart';
 
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({super.key});
@@ -92,23 +93,26 @@ class SearchResultPage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          _buildPostCard(
-            'Ada saran judul skripsi untuk anak IT yang tidak jago ngoding?',
-            'r/TeknikInformatika • 5 jam yang lalu',
-            '128',
-            '45',
+          PostCard(
+            nama: '',
+            judul: 'Ada saran judul skripsi untuk anak IT yang tidak jago ngoding?',
+            customSubtitle: 'r/TeknikInformatika • 5 jam yang lalu',
+            upvotes: '128',
+            comments: '45',
           ),
-          _buildPostCard(
-            'Berapa lama idealnya mengerjakan skripsi dari Bab 1 sampai selesai?',
-            'r/PejuangSkripsi • 1 hari yang lalu',
-            '342',
-            '89',
+          PostCard(
+            nama: '',
+            judul: 'Berapa lama idealnya mengerjakan skripsi dari Bab 1 sampai selesai?',
+            customSubtitle: 'r/PejuangSkripsi • 1 hari yang lalu',
+            upvotes: '342',
+            comments: '89',
           ),
-          _buildPostCard(
-            'Dosen pembimbing susah ditemui, apa yang harus saya lakukan?',
-            'r/KehidupanKampus • 3 hari yang lalu',
-            '510',
-            '130',
+          PostCard(
+            nama: '',
+            judul: 'Dosen pembimbing susah ditemui, apa yang harus saya lakukan?',
+            customSubtitle: 'r/KehidupanKampus • 3 hari yang lalu',
+            upvotes: '510',
+            comments: '130',
           ),
           const SizedBox(height: 32),
         ],
@@ -158,40 +162,4 @@ class SearchResultPage extends StatelessWidget {
     );
   }
 
-  // Fungsi kartu postingan
-  Widget _buildPostCard(
-    String title,
-    String subtitle,
-    String upvotes,
-    String comments,
-  ) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ListTile(
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(subtitle),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Icon(Icons.arrow_upward, size: 16, color: Colors.grey),
-                const SizedBox(width: 4),
-                Text(upvotes),
-                const SizedBox(width: 16),
-                const Icon(
-                  Icons.chat_bubble_outline,
-                  size: 16,
-                  color: Colors.grey,
-                ),
-                const SizedBox(width: 4),
-                Text(comments),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

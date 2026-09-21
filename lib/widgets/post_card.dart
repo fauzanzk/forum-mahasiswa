@@ -7,6 +7,7 @@ class PostCard extends StatelessWidget {
   final String judul;
   final String upvotes;
   final String comments;
+  final String? customSubtitle;
   final VoidCallback? onTap;
 
   const PostCard({
@@ -15,6 +16,7 @@ class PostCard extends StatelessWidget {
     required this.judul,
     this.upvotes = '100',
     this.comments = '10',
+    this.customSubtitle,
     this.onTap,
   });
 
@@ -28,7 +30,7 @@ class PostCard extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('r/$nama • beberapa waktu yang lalu'),
+            Text(customSubtitle ?? 'r/$nama • beberapa waktu yang lalu'),
             const SizedBox(height: 8),
             Row(
               children: [

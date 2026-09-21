@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/navigation_bar.dart';
+import '../widgets/post_card.dart';
 import 'settings.dart';
 import 'notif.dart';
 
@@ -129,23 +130,26 @@ class ProfilePage extends StatelessWidget {
           ),
           const Divider(),
 
-          _buildPostCard(
-            'Tips bertahan hidup di ujian akhir Basis Data',
-            'r/SistemInformasi • 2 jam yang lalu',
-            '247',
-            '38',
+          PostCard(
+            nama: '',
+            judul: 'Tips bertahan hidup di ujian akhir Basis Data',
+            customSubtitle: 'r/SistemInformasi • 2 jam yang lalu',
+            upvotes: '247',
+            comments: '38',
           ),
-          _buildPostCard(
-            'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
-            'r/SistemInformasi • 2 hari yang lalu',
-            '94',
-            '47',
+          PostCard(
+            nama: '',
+            judul: 'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
+            customSubtitle: 'r/SistemInformasi • 2 hari yang lalu',
+            upvotes: '94',
+            comments: '47',
           ),
-          _buildPostCard(
-            'Tempat belajar paling nyaman di sekitar kampus',
-            'r/KehidupanKampus • 1 minggu yang lalu',
-            '1.2k',
-            '124',
+          PostCard(
+            nama: '',
+            judul: 'Tempat belajar paling nyaman di sekitar kampus',
+            customSubtitle: 'r/KehidupanKampus • 1 minggu yang lalu',
+            upvotes: '1.2k',
+            comments: '124',
           ),
         ],
       ),
@@ -163,42 +167,6 @@ class ProfilePage extends StatelessWidget {
         ),
         Text(label, style: const TextStyle(color: Colors.grey)),
       ],
-    );
-  }
-
-  Widget _buildPostCard(
-    String title,
-    String subtitle,
-    String upvotes,
-    String comments,
-  ) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ListTile(
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(subtitle),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Icon(Icons.arrow_upward, size: 16, color: Colors.grey),
-                const SizedBox(width: 4),
-                Text(upvotes),
-                const SizedBox(width: 16),
-                const Icon(
-                  Icons.chat_bubble_outline,
-                  size: 16,
-                  color: Colors.grey,
-                ),
-                const SizedBox(width: 4),
-                Text(comments),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

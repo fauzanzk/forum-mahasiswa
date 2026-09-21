@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../themes/color_theme.dart';
-
 class DiskusiPage extends StatelessWidget {
   final String nama;
   final String judul;
@@ -13,7 +11,10 @@ class DiskusiPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Diskusi', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Diskusi',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         elevation: 3,
@@ -83,31 +84,51 @@ class DiskusiPage extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.arrow_upward_rounded, size: 20, color: Colors.black87),
+                      Icon(
+                        Icons.arrow_upward_rounded,
+                        size: 20,
+                        color: Colors.black87,
+                      ),
                       SizedBox(width: 4),
-                      Text('Upvote', style: TextStyle(fontWeight: FontWeight.w600)),
+                      Text(
+                        'Upvote',
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(width: 12),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.chat_bubble_outline_rounded, size: 20, color: Colors.black87),
+                      Icon(
+                        Icons.chat_bubble_outline_rounded,
+                        size: 20,
+                        color: Colors.black87,
+                      ),
                       SizedBox(width: 4),
-                      Text('Reply', style: TextStyle(fontWeight: FontWeight.w600)),
+                      Text(
+                        'Reply',
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                 ),
