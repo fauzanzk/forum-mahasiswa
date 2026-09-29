@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'help.dart'; // Menggunakan help.dart sesuai nama file Anda
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,10 @@ class SettingsPage extends StatelessWidget {
         title: const Text(
           'Pengaturan',
           style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -30,7 +34,7 @@ class SettingsPage extends StatelessWidget {
             title: 'u/NotNiyanaka',
             onTap: () {},
           ),
-          
+
           _buildSectionHeader('KONNECT PREMIUM'),
           _buildSettingsItem(
             icon: Icons.security,
@@ -119,35 +123,42 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsItem(
-      {required IconData icon,
-      required String title,
-      String? subtitle,
-      required VoidCallback onTap}) {
+  Widget _buildSettingsItem({
+    required IconData icon,
+    required String title,
+    String? subtitle,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       subtitle: subtitle != null
-          ? Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey))
+          ? Text(
+              subtitle,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            )
           : null,
       trailing: const Icon(Icons.chevron_right, color: Colors.grey),
       onTap: onTap,
     );
   }
 
-  Widget _buildSettingsItemWithTrailingText(
-      {required IconData icon,
-      required String title,
-      required String trailingText,
-      required VoidCallback onTap}) {
+  Widget _buildSettingsItemWithTrailingText({
+    required IconData icon,
+    required String title,
+    required String trailingText,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(trailingText,
-              style: const TextStyle(color: Colors.grey, fontSize: 14)),
+          Text(
+            trailingText,
+            style: const TextStyle(color: Colors.grey, fontSize: 14),
+          ),
           const SizedBox(width: 4),
           const Icon(Icons.chevron_right, color: Colors.grey),
         ],

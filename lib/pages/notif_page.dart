@@ -32,7 +32,7 @@ class NotifikasiPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         centerTitle: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -164,7 +164,7 @@ class _NotificationItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -202,10 +202,7 @@ class _NotificationItem extends StatelessWidget {
                   TextSpan(text: normalText),
                   TextSpan(
                     text: '  $timeText',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                    ),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                 ],
               ),
@@ -242,15 +239,15 @@ class _NotificationItem extends StatelessWidget {
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.1),
+        color: Colors.blue.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(
         type == _NotifType.like
             ? Icons.favorite
             : type == _NotifType.comment
-                ? Icons.chat_bubble
-                : Icons.image,
+            ? Icons.chat_bubble
+            : Icons.image,
         color: Colors.blue,
         size: 20,
       ),

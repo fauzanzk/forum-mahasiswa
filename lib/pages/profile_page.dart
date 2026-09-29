@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         centerTitle: false,
         title: const Text(
           'Konnect.',
@@ -139,7 +139,8 @@ class ProfilePage extends StatelessWidget {
           ),
           PostCard(
             nama: '',
-            judul: 'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
+            judul:
+                'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
             customSubtitle: 'r/SistemInformasi • 2 hari yang lalu',
             upvotes: '94',
             comments: '47',

@@ -35,7 +35,7 @@ class KomunitasPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         centerTitle: false,
         title: const Text(
           'Konnect.',
@@ -166,7 +166,9 @@ class KomunitasPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        color: isActive ? Colors.blue : Colors.grey.shade200, // Aktif berwarna biru
+        color: isActive
+            ? Colors.blue
+            : Colors.grey.shade200, // Aktif berwarna biru
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
@@ -191,7 +193,7 @@ class KomunitasPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

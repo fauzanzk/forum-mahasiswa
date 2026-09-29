@@ -15,7 +15,7 @@ class SearchResultPage extends StatelessWidget {
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -109,7 +109,8 @@ class SearchResultPage extends StatelessWidget {
           ),
           PostCard(
             nama: '',
-            judul: 'Dosen pembimbing susah ditemui, apa yang harus saya lakukan?',
+            judul:
+                'Dosen pembimbing susah ditemui, apa yang harus saya lakukan?',
             customSubtitle: 'r/KehidupanKampus • 3 hari yang lalu',
             upvotes: '510',
             comments: '130',
@@ -161,5 +162,4 @@ class SearchResultPage extends StatelessWidget {
       ),
     );
   }
-
 }

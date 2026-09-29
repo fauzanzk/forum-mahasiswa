@@ -18,9 +18,10 @@ class DiskusiPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         surfaceTintColor: Colors.transparent,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -63,7 +64,7 @@ class DiskusiPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // ── Judul
+            //* Judul
             Text(
               judul,
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -71,7 +72,7 @@ class DiskusiPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // ── Isi
+            //* Isi
             const Text(
               'Ini adalah isi diskusi. Di sini nanti kamu bisa menampilkan '
               'komentar-komentar dari user lain.',
@@ -80,7 +81,7 @@ class DiskusiPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // ── Icon Actions (Upvote, Comment, Report)
+            //* Icon Actions (Upvote, Comment, Report)
             Row(
               children: [
                 Container(
