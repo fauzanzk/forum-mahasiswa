@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'help.dart'; // Menggunakan help.dart sesuai nama file Anda
+import 'help_page.dart'; // Menggunakan help.dart sesuai nama file Anda
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

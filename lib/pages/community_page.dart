@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/navigation_bar.dart';
-import 'notif.dart';
+import 'notif_page.dart';
 
 void main() {
   runApp(const CommunityPage());

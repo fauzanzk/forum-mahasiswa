@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/navigation_bar.dart';
 import '../widgets/post_card.dart';
-import 'settings.dart';
-import 'notif.dart';
+import 'settings_page.dart';
+import 'notif_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 // theme
-import '../themes/color_theme.dart';
+import '../themes/app_colors.dart';
 
 // widget
 import '../widgets/navigation_bar.dart';
 import '../widgets/post_card.dart';
 
 // page
-import 'post.dart';
-import 'notif.dart';
+import 'post_page.dart';
+import 'notif_page.dart';
 
 final List<Map<String, String>> pengencobaaja = [
   {

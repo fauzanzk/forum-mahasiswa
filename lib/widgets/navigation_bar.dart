@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 
-import '../pages/home.dart';
-import '../pages/community.dart';
-import '../pages/profile.dart';
-import '../pages/search_result.dart';
+import '../pages/home_page.dart';
+import '../pages/community_page.dart';
+import '../pages/profile_page.dart';
+import '../pages/search_result_page.dart';
 
 class NavBar extends StatelessWidget {
   final int currentIndex;
