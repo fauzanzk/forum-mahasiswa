@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 class DiskusiPage extends StatelessWidget {
   final String nama;
@@ -9,7 +10,7 @@ class DiskusiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: const Text(
           'Diskusi',
@@ -98,7 +99,7 @@ class DiskusiPage extends StatelessWidget {
                       Icon(
                         Icons.arrow_upward_rounded,
                         size: 20,
-                        color: Colors.black87,
+                        color: AppColors.textSecondary,
                       ),
                       SizedBox(width: 4),
                       Text(
@@ -123,7 +124,7 @@ class DiskusiPage extends StatelessWidget {
                       Icon(
                         Icons.chat_bubble_outline_rounded,
                         size: 20,
-                        color: Colors.black87,
+                        color: AppColors.textSecondary,
                       ),
                       SizedBox(width: 4),
                       Text(

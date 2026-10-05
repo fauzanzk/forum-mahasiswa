@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 void main() {
   runApp(const NotifApp());
@@ -14,7 +15,7 @@ class NotifApp extends StatelessWidget {
       title: 'Notifikasi',
       theme: ThemeData(
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: Colors.white,
+        
       ),
       home: const NotifikasiPage(),
     );
@@ -26,8 +27,8 @@ class NotifikasiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold(backgroundColor: AppColors.background,
+      
       appBar: AppBar(
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
@@ -48,7 +49,7 @@ class NotifikasiPage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         children: const [
           _SectionTitle('Hari ini'),
           _NotificationItem(
@@ -59,7 +60,7 @@ class NotifikasiPage extends StatelessWidget {
             timeText: '2 j',
             type: _NotifType.like,
           ),
-          SizedBox(height: 10),
+          
           _NotificationItem(
             initial: 'F',
             avatarColor: Color(0xFF4ADE80),
@@ -68,7 +69,7 @@ class NotifikasiPage extends StatelessWidget {
             timeText: '5 j',
             type: _NotifType.follow,
           ),
-          SizedBox(height: 20),
+          
 
           _SectionTitle('Kemarin'),
           _NotificationItem(
@@ -79,7 +80,7 @@ class NotifikasiPage extends StatelessWidget {
             timeText: '1 h',
             type: _NotifType.comment,
           ),
-          SizedBox(height: 20),
+          
 
           _SectionTitle('Minggu Ini'),
           _NotificationItem(
@@ -90,7 +91,7 @@ class NotifikasiPage extends StatelessWidget {
             timeText: '5 h',
             type: _NotifType.like,
           ),
-          SizedBox(height: 20),
+          
 
           _SectionTitle('Bulan Ini'),
           _NotificationItem(
@@ -101,7 +102,7 @@ class NotifikasiPage extends StatelessWidget {
             timeText: '2 mg',
             type: _NotifType.post,
           ),
-          SizedBox(height: 10),
+          
           _NotificationItem(
             initial: 'I',
             avatarColor: Color(0xFFFBBF24),
@@ -123,11 +124,11 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12, top: 4),
+      padding: const EdgeInsets.only(bottom: 8, top: 16, left: 16, right: 16),
       child: Text(
         title,
         style: const TextStyle(
-          color: Colors.black87,
+          color: AppColors.textSecondary,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
@@ -158,17 +159,12 @@ class _NotificationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        border: Border(
+          bottom: BorderSide(color: AppColors.border, width: 1),
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,16 +189,16 @@ class _NotificationItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
-                style: const TextStyle(fontSize: 14, color: Colors.black87),
+                style: const TextStyle(fontSize: 14, color: AppColors.textPrimary, height: 1.3),
                 children: [
                   TextSpan(
                     text: boldText,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textPrimary),
                   ),
                   TextSpan(text: normalText),
                   TextSpan(
                     text: '  $timeText',
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 13, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
@@ -221,7 +217,7 @@ class _NotificationItem extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: AppColors.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: const Text(
@@ -239,7 +235,7 @@ class _NotificationItem extends StatelessWidget {
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: Colors.blue.withValues(alpha: 0.1),
+        color: AppColors.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(
@@ -248,7 +244,7 @@ class _NotificationItem extends StatelessWidget {
             : type == _NotifType.comment
             ? Icons.chat_bubble
             : Icons.image,
-        color: Colors.blue,
+        color: AppColors.primary,
         size: 20,
       ),
     );

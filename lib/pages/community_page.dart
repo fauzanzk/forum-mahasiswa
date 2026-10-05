@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 import '../widgets/navigation_bar.dart';
+import '../widgets/post_card.dart';
 import 'notif_page.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class CommunityPage extends StatelessWidget {
       title: 'Communities',
       theme: ThemeData(
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: Colors.white,
+        
       ),
       home: const KomunitasPage(),
     );
@@ -29,8 +31,8 @@ class KomunitasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold(backgroundColor: AppColors.background,
+      
       appBar: AppBar(
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
@@ -110,22 +112,8 @@ class KomunitasPage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          _buildPostCard(
-            'Dimas',
-            const Color(0xFFFBBF24),
-            'Selamat buat GothamChess udah menangin turnamen kemarin.',
-            '2 h',
-            '120',
-            '15',
-          ),
-          _buildPostCard(
-            'Arum',
-            const Color(0xFFFBBF24),
-            'Ini hasil turnamen kemarin yaa, selamat buat pemenang.',
-            '3 h',
-            '85',
-            '5',
-          ),
+          PostCard(nama: 'Catur', judul: 'Selamat buat GothamChess udah menangin turnamen kemarin.', upvotes: '120', comments: '15'),
+          PostCard(nama: 'Catur', judul: 'Ini hasil turnamen kemarin yaa, selamat buat pemenang.', upvotes: '85', comments: '5'),
           const SizedBox(height: 20),
 
           const Padding(
@@ -135,22 +123,8 @@ class KomunitasPage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          _buildPostCard(
-            'Iggi',
-            const Color(0xFF4ADE80),
-            'Ada yang mau ngaji bareng di masjid ga?',
-            '1 j',
-            '45',
-            '12',
-          ),
-          _buildPostCard(
-            'Septyan',
-            const Color(0xFF4ADE80),
-            'Minggu ini kita ada pengajian di hari kamis sekalian doa bersama ya guys, ditunggu kehadirannya.',
-            '3 h',
-            '210',
-            '42',
-          ),
+          PostCard(nama: 'Islam', judul: 'Ada yang mau ngaji bareng di masjid ga?', upvotes: '45', comments: '12'),
+          PostCard(nama: 'Islam', judul: 'Minggu ini kita ada pengajian di hari kamis sekalian doa bersama ya guys, ditunggu kehadirannya.', upvotes: '210', comments: '42'),
           const SizedBox(height: 32),
         ],
       ),
@@ -193,7 +167,7 @@ class KomunitasPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: AppColors.textPrimary.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -210,7 +184,7 @@ class KomunitasPage extends StatelessWidget {
                 child: Text(
                   name,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
@@ -238,74 +212,4 @@ class KomunitasPage extends StatelessWidget {
     );
   }
 
-  Widget _buildPostCard(
-    String author,
-    Color avatarColor,
-    String content,
-    String time,
-    String upvotes,
-    String comments,
-  ) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ListTile(
-        title: Row(
-          children: [
-            CircleAvatar(
-              radius: 12,
-              backgroundColor: avatarColor,
-              child: Text(
-                author[0],
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              author,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              '• $time yang lalu',
-              style: const TextStyle(color: Colors.grey, fontSize: 12),
-            ),
-          ],
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 8),
-            Text(
-              content,
-              style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                const Icon(Icons.arrow_upward, size: 16, color: Colors.grey),
-                const SizedBox(width: 4),
-                Text(upvotes),
-                const SizedBox(width: 16),
-                const Icon(
-                  Icons.chat_bubble_outline,
-                  size: 16,
-                  color: Colors.grey,
-                ),
-                const SizedBox(width: 4),
-                Text(comments),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
   }
-}

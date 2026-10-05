@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 class BantuanPage extends StatelessWidget {
   const BantuanPage({super.key});
@@ -8,10 +9,10 @@ class BantuanPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
         elevation: 1,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: Row(
@@ -40,14 +41,14 @@ class BantuanPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w900,
-                      color: Colors.black,
+                      color: AppColors.textPrimary,
                       height: 1.1,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text(
                     'Selamat datang di Pusat Bantuan Konnect',
-                    style: TextStyle(fontSize: 14, color: Colors.black87),
+                    style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
                   ),
                   const SizedBox(height: 24),
                   Container(
@@ -70,7 +71,7 @@ class BantuanPage extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: const BoxDecoration(
-                            color: Colors.black,
+                            color: AppColors.textPrimary,
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.search, color: Colors.white, size: 20),

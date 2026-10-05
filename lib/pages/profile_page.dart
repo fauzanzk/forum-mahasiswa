@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 import '../widgets/navigation_bar.dart';
 import '../widgets/post_card.dart';
@@ -11,7 +12,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         surfaceTintColor: Colors.transparent,
@@ -79,7 +80,7 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: AppColors.background,
                   foregroundColor: Colors.blue,
                 ),
                 onPressed: () {},
@@ -131,24 +132,24 @@ class ProfilePage extends StatelessWidget {
           const Divider(),
 
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul: 'Tips bertahan hidup di ujian akhir Basis Data',
-            customSubtitle: 'r/SistemInformasi • 2 jam yang lalu',
+            
             upvotes: '247',
             comments: '38',
           ),
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul:
                 'Ada yang kesulitan dengan kurikulum Aljabar Linear yang baru?',
-            customSubtitle: 'r/SistemInformasi • 2 hari yang lalu',
+            
             upvotes: '94',
             comments: '47',
           ),
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul: 'Tempat belajar paling nyaman di sekitar kampus',
-            customSubtitle: 'r/KehidupanKampus • 1 minggu yang lalu',
+            
             upvotes: '1.2k',
             comments: '124',
           ),

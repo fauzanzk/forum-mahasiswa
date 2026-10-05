@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 //* widget
 import '../widgets/navigation_bar.dart';
@@ -10,14 +11,14 @@ class SearchResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
         surfaceTintColor: Colors.transparent,
         elevation: 3,
         shadowColor: Colors.black.withValues(alpha: 0.3),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             // Navigator.pop(context);
           },
@@ -35,7 +36,7 @@ class SearchResultPage extends StatelessWidget {
               SizedBox(width: 8),
               Text(
                 'Skripsi',
-                style: TextStyle(color: Colors.black87, fontSize: 16),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
               ),
             ],
           ),
@@ -94,24 +95,24 @@ class SearchResultPage extends StatelessWidget {
             ),
           ),
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul: 'Ada saran judul skripsi untuk anak IT yang tidak jago ngoding?',
-            customSubtitle: 'r/TeknikInformatika • 5 jam yang lalu',
+            
             upvotes: '128',
             comments: '45',
           ),
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul: 'Berapa lama idealnya mengerjakan skripsi dari Bab 1 sampai selesai?',
-            customSubtitle: 'r/PejuangSkripsi • 1 hari yang lalu',
+            
             upvotes: '342',
             comments: '89',
           ),
           PostCard(
-            nama: '',
+            nama: 'Kategori',
             judul:
                 'Dosen pembimbing susah ditemui, apa yang harus saya lakukan?',
-            customSubtitle: 'r/KehidupanKampus • 3 hari yang lalu',
+            
             upvotes: '510',
             comments: '130',
           ),

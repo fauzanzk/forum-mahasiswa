@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 import 'help_page.dart'; // Menggunakan help.dart sesuai nama file Anda
 
@@ -8,18 +9,18 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.black),
+          icon: const Icon(Icons.close, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Pengaturan',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -130,7 +131,7 @@ class SettingsPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Colors.black87),
+      leading: Icon(icon, color: AppColors.textSecondary),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       subtitle: subtitle != null
           ? Text(
@@ -150,7 +151,7 @@ class SettingsPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Colors.black87),
+      leading: Icon(icon, color: AppColors.textSecondary),
       title: Text(title, style: const TextStyle(fontSize: 16)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -167,3 +168,4 @@ class SettingsPage extends StatelessWidget {
     );
   }
 }
+
