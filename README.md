@@ -54,7 +54,7 @@ The backend of this application is a RESTful API built with **Node.js** and **Ex
 Below is a cheat-sheet for testing the Node.js API Backend. 
 
 ### 🛡️ Authentication (JWT)
-Most endpoints (except `GET http://localhost:8080/posts` and `POST http://localhost:8080/auth/register|login`) are protected and require a Bearer token.
+Most endpoints (except `GET http://localhost:8080/posts` and `POST http://localhost:8080/auth/register` and `POST http://localhost:8080/auth/login`) are protected and require a Bearer token.
 To access protected routes, pass the token in the headers of your request in Postman/Thunder Client:
 - **Key**: `Authorization`
 - **Value**: `Bearer <your_jwt_token_here>`
