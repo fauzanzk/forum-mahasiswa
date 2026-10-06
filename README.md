@@ -47,7 +47,121 @@ The backend of this application is a RESTful API built with **Node.js** and **Ex
    ```
    The API will now be listening for requests at `http://localhost:8080`.
 
-4. **Testing Endpoints**:
-   - **`GET http://localhost:8080/posts`**: Fetches all posts along with dynamic upvote and comment counts.
-   - **`POST http://localhost:8080/auth/login`**: Send JSON `{"username": "emilys", "password": "emilyspass"}` to receive a JWT token and user profile data.
+---
 
+## 🚀 API Endpoint Testcase Examples
+
+Below is a cheat-sheet for testing the Node.js API Backend. 
+
+### 🛡️ Authentication (JWT)
+Most endpoints (except `GET http://localhost:8080/posts` and `POST http://localhost:8080/auth/register|login`) are protected and require a Bearer token.
+To access protected routes, pass the token in the headers of your request in Postman/Thunder Client:
+- **Key**: `Authorization`
+- **Value**: `Bearer <your_jwt_token_here>`
+
+---
+
+## 🔐 Auth Endpoints
+
+### 1. Register User (POST)
+- **Endpoint**: `POST http://localhost:8080/auth/register`
+- **Body** (JSON):
+```json
+{
+  "username": "johndoe",
+  "password": "mysecretpassword123",
+  "email": "johndoe@example.com"
+}
+```
+
+### 2. Login User (POST)
+- **Endpoint**: `POST http://localhost:8080/auth/login`
+- **Body** (JSON):
+```json
+{
+  "username": "johndoe",
+  "password": "mysecretpassword123"
+}
+```
+
+---
+
+## 📝 Posts Endpoints
+
+### 1. Get All Posts (GET)
+- **Endpoint**: `GET http://localhost:8080/posts`
+- **Auth Required**: No
+
+### 2. Create Post (POST)
+- **Endpoint**: `POST http://localhost:8080/posts`
+- **Auth Required**: Yes *(The user_id is automatically extracted from your JWT token)*
+- **Body** (JSON):
+```json
+{
+  "kategori": "Teknologi",
+  "judul": "Bagaimana cara setup Node.js?"
+}
+```
+
+### 3. Update Entire Post (PUT)
+- **Endpoint**: `PUT http://localhost:8080/posts/1`
+- **Auth Required**: Yes
+- **Body** (JSON):
+```json
+{
+  "kategori": "Sistem Informasi",
+  "judul": "Ini judul yang sudah diupdate sepenuhnya"
+}
+```
+
+### 4. Update Post Partially (PATCH)
+- **Endpoint**: `PATCH http://localhost:8080/posts/1`
+- **Auth Required**: Yes
+- **Body** (JSON):
+```json
+{
+  "judul": "Hanya mengupdate judul post ini"
+}
+```
+
+### 5. Delete Post (DELETE)
+- **Endpoint**: `DELETE http://localhost:8080/posts/1`
+- **Auth Required**: Yes
+
+---
+
+## 👥 Users Endpoints
+
+### 1. Get All Users (GET)
+- **Endpoint**: `GET http://localhost:8080/users`
+- **Auth Required**: Yes
+
+### 2. Get User By ID (GET)
+- **Endpoint**: `GET http://localhost:8080/users/1`
+- **Auth Required**: Yes
+
+### 3. Update Entire User (PUT)
+- **Endpoint**: `PUT http://localhost:8080/users/1`
+- **Auth Required**: Yes
+- **Body** (JSON):
+```json
+{
+  "username": "johndoe_updated",
+  "password": "newpassword123",
+  "email": "john.updated@example.com"
+}
+```
+
+### 4. Update User Partially (PATCH)
+- **Endpoint**: `PATCH http://localhost:8080/users/1`
+- **Auth Required**: Yes
+- **Body** (JSON):
+```json
+{
+  "email": "johndoe.newemail@example.com"
+}
+```
+
+### 5. Delete User (DELETE)
+- **Endpoint**: `DELETE http://localhost:8080/users/1`
+- **Auth Required**: Yes
