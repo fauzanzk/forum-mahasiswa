@@ -1,167 +1,183 @@
 # Forum Mahasiswa
 
-A new Flutter project.
+Aplikasi Forum Mahasiswa berbasis Flutter untuk mobile dan didukung oleh RESTful API Backend berbasis Node.js & Express.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
 
 ## API Backend
 
-The backend of this application is a RESTful API built with **Node.js** and **Express**, utilizing a **MySQL** database. It is located in the `API Backend/` directory.
+Backend aplikasi ini dibangun menggunakan **Node.js**, **Express**, dan basis data **MySQL**. Struktur backend telah menerapkan **Layered Architecture (MVC)** yang bersih:
+- `controllers/` : Menghandle request dan response HTTP.
+- `services/` : Berisi business logic dan eksekusi query database.
+- `routes/` : Mendefinisikan endpoint routing.
+- `middlewares/` : Global error handler dan 404 not found handler.
+- `utils/` : `ApiError` class dan `asyncHandler` wrapper.
+- `config/` : Konfigurasi koneksi MySQL pool.
 
-### Features
-- **Authentication**: Implements secure user login using bcrypt for password hashing and JSON Web Tokens (JWT) for session management.
-- **Database**: Relational database schema (`forum_db.sql`) supporting `users`, `posts`, `comments`, and `upvotes`.
-- **Dynamic Data**: Raw SQL queries via `mysql2` to compute upvotes and comments directly from the database for the Flutter UI.
-- **Security**: Raw database errors are logged strictly on the server, ensuring clients only receive generic error messages. Uses environment variables (`.env`) to safely manage database credentials and JWT secrets.
-
-### How to Run Locally
-
-1. **Setup Database**:
-   - Start **MySQL** via XAMPP (usually on port 3306).
-   - Open phpMyAdmin and create a new database named `forum_db`.
-   - Import the `forum_db.sql` file (found in the `API Backend` folder) into the database to generate the tables and seed data.
-
-2. **Configure Environment Variables**:
-   - Navigate into the `API Backend/` folder.
-   - Copy the `.env.example` file and rename it to `.env`.
-   - Update `DB_PASSWORD` with your local MySQL root password.
-   - Keep the `PORT` set to `8080` (this ensures it doesn't conflict with XAMPP's Apache web server).
-
-3. **Install Dependencies & Start Server**:
-   ```bash
-   cd "API Backend"
-   npm install
-   node server.js
-   ```
-   The API will now be listening for requests at `http://localhost:8080`.
+### Fitur Database & Skema
+- **Users**: Mendukung registrasi dan login user dengan hashing password `bcrypt`.
+- **Communities**: Mendukung data komunitas dan keanggotaan (`community_members`).
+- **Posts**: Mendukung postingan forum dengan counter otomatis untuk votes (`post_votes`) dan komentar (`comments`).
+- **Comments**: Mendukung komentar berantai / nested replies (`parent_id`) dan votes komentar (`comment_votes`).
+- **Migrasi Otomatis**: Dilengkapi script `migrate.js` untuk membuat seluruh tabel dan menyuntikkan data awal (*seed data*) secara instan.
 
 ---
 
-## 🚀 API Endpoint Testcase Examples
+## Cara Menjalankan Backend Secara Lokal
 
-Below is a cheat-sheet for testing the Node.js API Backend. 
+### 1. Setup Database
+Pastikan **MySQL** aktif (misalnya melalui XAMPP atau Laragon).
+Buat database bernama `forum_db` di MySQL jika belum ada:
+```sql
+CREATE DATABASE IF NOT EXISTS forum_db;
+```
 
-### 🛡️ Authentication (JWT)
-Most endpoints (except `GET http://localhost:8080/posts` and `POST http://localhost:8080/auth/register` and `POST http://localhost:8080/auth/login`) are protected and require a Bearer token.
-To access protected routes, pass the token in the headers of your request in Postman/Thunder Client:
-- **Key**: `Authorization`
-- **Value**: `Bearer <your_jwt_token_here>`
+Lalu jalankan migrasi database otomatis dari folder `API Backend/`:
+```bash
+cd "API Backend"
+npm run migrate
+```
+> Atau alternatifnya, Anda dapat meng-import file `API Backend/forum_db.sql` langsung melalui phpMyAdmin.
+
+### 2. Konfigurasi Environment Variables
+Pastikan file `.env` di folder `API Backend/` sudah sesuai dengan kredensial MySQL lokal Anda:
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=forum_db
+PORT=8080
+JWT_SECRET=rahasia_negara_123
+```
+
+### 3. Install Dependencies & Jalankan Server
+```bash
+npm install
+npm start
+```
+Server akan berjalan di **`http://localhost:8080`**.
 
 ---
 
-## 🔐 Auth Endpoints
+## Panduan Endpoint & Contoh Testcase API
 
-### 1. Register User (POST)
-- **Endpoint**: `POST http://localhost:8080/auth/register`
-- **Body** (JSON):
-```json
-{
-  "username": "johndoe",
-  "password": "mysecretpassword123",
-  "email": "johndoe@example.com"
-}
-```
+Semua route saat ini bersifat terbuka dan siap diuji melalui Postman / Thunder Client tanpa memerlukan header token Bearer.
 
-### 2. Login User (POST)
-- **Endpoint**: `POST http://localhost:8080/auth/login`
-- **Body** (JSON):
-```json
-{
-  "username": "johndoe",
-  "password": "mysecretpassword123"
-}
-```
+### Info & Health Check
+- `GET http://localhost:8080/` : Informasi ringkasan API & daftar endpoint
+- `GET http://localhost:8080/health` : Cek status kesehatan server
 
 ---
 
-## 📝 Posts Endpoints
+### 1. Auth Endpoints
 
-### 1. Get All Posts (GET)
-- **Endpoint**: `GET http://localhost:8080/posts`
-- **Auth Required**: No
-
-### 2. Create Post (POST)
-- **Endpoint**: `POST http://localhost:8080/posts`
-- **Auth Required**: Yes *(The user_id is automatically extracted from your JWT token)*
+#### Register User
+- **Method & URL**: `POST http://localhost:8080/auth/register`
 - **Body** (JSON):
 ```json
 {
-  "kategori": "Teknologi",
-  "judul": "Bagaimana cara setup Node.js?"
+  "username": "mahasiswa_baru",
+  "email": "mahasiswa@kampus.ac.id",
+  "password": "password123"
 }
 ```
 
-### 3. Update Entire Post (PUT)
-- **Endpoint**: `PUT http://localhost:8080/posts/1`
-- **Auth Required**: Yes
+#### Login User
+- **Method & URL**: `POST http://localhost:8080/auth/login`
 - **Body** (JSON):
 ```json
 {
-  "kategori": "Sistem Informasi",
-  "judul": "Ini judul yang sudah diupdate sepenuhnya"
+  "username": "emilys",
+  "password": "emilyspass"
 }
 ```
-
-### 4. Update Post Partially (PATCH)
-- **Endpoint**: `PATCH http://localhost:8080/posts/1`
-- **Auth Required**: Yes
-- **Body** (JSON):
-```json
-{
-  "judul": "Hanya mengupdate judul post ini"
-}
-```
-
-### 5. Delete Post (DELETE)
-- **Endpoint**: `DELETE http://localhost:8080/posts/1`
-- **Auth Required**: Yes
+*Catatan: Akun bawaan `emilys` / `emilyspass` sudah tersedia otomatis dari seed data.*
 
 ---
 
-## 👥 Users Endpoints
+### 2. Posts Endpoints
 
-### 1. Get All Users (GET)
-- **Endpoint**: `GET http://localhost:8080/users`
-- **Auth Required**: Yes
+#### Get All Posts
+- **Method & URL**: `GET http://localhost:8080/posts`
+- Mengembalikan daftar seluruh postingan forum beserta jumlah `upvotes` dan `comments`.
 
-### 2. Get User By ID (GET)
-- **Endpoint**: `GET http://localhost:8080/users/1`
-- **Auth Required**: Yes
+#### Get Post By ID
+- **Method & URL**: `GET http://localhost:8080/posts/1`
 
-### 3. Update Entire User (PUT)
-- **Endpoint**: `PUT http://localhost:8080/users/1`
-- **Auth Required**: Yes
+#### Create Post
+- **Method & URL**: `POST http://localhost:8080/posts`
 - **Body** (JSON):
 ```json
 {
-  "username": "johndoe_updated",
-  "password": "newpassword123",
-  "email": "john.updated@example.com"
+  "title": "Tips Belajar Pemrograman Mobile",
+  "content": "Gunakan Flutter dan Express untuk fullstack yang cepat",
+  "user_id": 1
 }
 ```
+*(Mendukung juga alias `judul` untuk title dan `kategori` untuk content)*
 
-### 4. Update User Partially (PATCH)
-- **Endpoint**: `PATCH http://localhost:8080/users/1`
-- **Auth Required**: Yes
+#### Update Post (PUT)
+- **Method & URL**: `PUT http://localhost:8080/posts/1`
 - **Body** (JSON):
 ```json
 {
-  "email": "johndoe.newemail@example.com"
+  "title": "Tips Belajar Pemrograman Mobile (Revisi)",
+  "content": "Materi telah diupdate secara menyeluruh"
 }
 ```
 
-### 5. Delete User (DELETE)
-- **Endpoint**: `DELETE http://localhost:8080/users/1`
-- **Auth Required**: Yes
+#### Update Post Parsial (PATCH)
+- **Method & URL**: `PATCH http://localhost:8080/posts/1`
+- **Body** (JSON):
+```json
+{
+  "title": "Judul Baru Saja"
+}
+```
+
+#### Delete Post
+- **Method & URL**: `DELETE http://localhost:8080/posts/1`
+
+---
+
+### 3. Users Endpoints
+
+#### Get All Users
+- **Method & URL**: `GET http://localhost:8080/users`
+
+#### Get User By ID
+- **Method & URL**: `GET http://localhost:8080/users/1`
+
+#### Create User
+- **Method & URL**: `POST http://localhost:8080/users`
+- **Body** (JSON):
+```json
+{
+  "username": "budi_santoso",
+  "email": "budi@kampus.ac.id",
+  "password": "password123"
+}
+```
+
+#### Update User (PUT)
+- **Method & URL**: `PUT http://localhost:8080/users/1`
+- **Body** (JSON):
+```json
+{
+  "username": "emilys_updated",
+  "email": "emilys.new@dummyjson.com",
+  "password": "newpassword123"
+}
+```
+
+#### Update User Parsial (PATCH)
+- **Method & URL**: `PATCH http://localhost:8080/users/1`
+- **Body** (JSON):
+```json
+{
+  "email": "emilys.updateonly@dummyjson.com"
+}
+```
+
+#### Delete User
+- **Method & URL**: `DELETE http://localhost:8080/users/1`
