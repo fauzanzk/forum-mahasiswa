@@ -47,7 +47,6 @@ DB_USER=root
 DB_PASSWORD=
 DB_NAME=forum_db
 PORT=8080
-JWT_SECRET=rahasia_negara_123
 ```
 
 ### 3. Install Dependencies & Jalankan Server
